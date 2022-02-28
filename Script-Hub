@@ -1,0 +1,147 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+
+local Window = Library.CreateLib("Scripts HUB", "DarkTheme")
+-- Rebirth Champions X
+local RCX = Window:NewTab("Rebirth Champions X")
+
+local RCXSection = RCX:NewSection("Rebirth Champions X")
+RCXSection:NewButton("Rebirth Champions Script #1", "Click to open script!", function()
+    print("Clicked")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/uzu01/lua/main/loader.lua"))()
+end)
+
+-- Devious Lick Simulator
+local DLS = Window:NewTab("Devious Lick Simulator")
+
+local DLSSection = DLS:NewSection("Devious Lick Simulator")
+DLSSection:NewButton("Devious Lick Simulator Script #1", "Click to open script!", function()
+    print("Clicked")
+    loadstring(game:HttpGet"https://thedragonslayer2.github.io")()
+end)
+
+DLSSection:NewToggle("Auto Open Egg", "This Script Opens BEST egg in game now. i change it it", function(state)
+    if state then
+        print("Toggle On")while true do
+        game:GetService("ReplicatedStorage").Events.OpenEgg:InvokeServer("Common Egg",3) -- u can change egg to open
+        wait()
+        end
+    else
+        print("Toggle Off")
+    end
+end)
+-- Magnet Simulator 2
+local MS2 = Window:NewTab("Magnet Simulator 2")
+
+local MS2Section = MS2:NewSection("Magnet Simulator 2")
+MS2Section:NewButton("Magnet Simulator 2 Script #1", "Autofarm+Auto open eggs and removing hatch anim", function()
+    print("Clicked")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Kederal/script.gg/main/loader.lua"))()
+end)
+MS2Section:NewButton("Magnet Simulator 2 Script #2 (READ DESC)", "give you some GP for FREE and open ALL worlds", function()
+    print("Clicked")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Bebo-Mods/BeboScripts/main/MagnetSim2.lua"))()
+end)
+-- Pet Simulator X
+local PSX = Window:NewTab("Pet Simulator X")
+
+local PSXSection = PSX:NewSection("Pet Simulator X")
+PSXSection:NewButton("Pet Simulator X chatht.ml Script", "chatht.ml script. Autofarm and more", function()
+    print("Clicked")
+    loadstring(game:HttpGet("https://HugeGames.io/script"))()
+end)
+-- Bee Swarm Simulator
+local BSS = Window:NewTab("Bee Swarm Simulator")
+
+local BSSSection = BSS:NewSection("Bee Swarm Simulator")
+BSSSection:NewButton("Bee Swarm Simulator Script #1", "Click to open script!", function()
+    print("Clicked")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/not-weuz/Lua/main/kocmoc.lua"))()
+end)
+-- Bubble Gum Simulator
+local BGS = Window:NewTab("Bubble Gum Simulator")
+
+local BGSSection = BGS:NewSection("Bubble Gum Simulator")
+BGSSection:NewButton("Bubble Gum Simulator script (READ DESC)", "DerekCool script(only fluxus, krnl, synapse)", function()
+    print("Clicked")
+    getgenv().Themes = {
+        Main = {
+            Background = Color3.fromRGB(27,27,27),
+            Dashboard = Color3.fromRGB(35,35,35),
+            PageColor = Color3.fromRGB(30,30,30),
+            TextColor = Color3.fromRGB(255,255,255),
+            ScrollColor = Color3.fromRGB(25,25,25),
+            Elements = Color3.fromRGB(37,37,37)
+        },
+    
+        Elements = {
+            Toggle = {
+                EnabledColor = Color3.fromRGB(50,50,50),
+                DisabledColor = Color3.fromRGB(30, 30, 30)
+            },
+            Dropdown = {
+                OptionColor = Color3.fromRGB(35,35,35),
+                SearchBar = Color3.fromRGB(30,30,30)
+            },
+            Slider = {
+                TrailBackground = Color3.fromRGB(22,22,22),
+                Trail = Color3.fromRGB(26,26,26)
+            },
+            TextBox = {
+                Box = Color3.fromRGB(30,30,30)
+            },
+            Keybind = {
+                KeyTextBackground = Color3.fromRGB(30,30,30)
+            }
+        }
+    }
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/derekcool38/Releases/main/ScriptHub/Loader.lua"))()
+end)
+BGSSection:NewButton("Bubble Gum Simulator script #2", "Auto open eggs and other", function()
+    print("Clicked")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NotARetard/script/main/Bubble%20Gum%20Simulator", true))()    
+end)
+BGSSection:NewButton("Bubble Gum Simulator script #3", "Strelizia", function()
+    print("Clicked")
+    loadstring(game:HttpGet(("https://textbin.net/raw/t4jqgjsvfi"),true))()
+end)
+-- Murderer Mystery 2
+local MM2 = Window:NewTab("Murderer Mystery 2")
+
+local MM2Section = MM2:NewSection("Murderer Mystery 2")
+MM2Section:NewButton("Murderer Mystery 2 script", "Eclipse MM2 script.", function()
+    print("Clicked")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Ethanoj1/EclipseMM2/master/Script", true))()
+end)
+-- Horrific H0using
+local HOHO = Window:NewTab("Horrific H0using")
+
+local HOHOSection = HOHO:NewSection("Horrific H0using")
+HOHOSection:NewButton("Horrific H0using INF money script", "click to get tons of coins!", function()
+    print("Clicked")
+    while true do
+        wait(0)
+        local Target = game:GetService("ReplicatedStorage").LoginRewards;
+        Target:FireServer(100000000000);
+        end
+end)
+-- Weapon Fighting Simulator
+local WFC = Window:NewTab("Weapon Fighting Simulator")
+
+local WFCSection = WFC:NewSection("Weapon Fighting Simulator")
+WFCSection:NewButton("Weapon Fighting Simulator script", "Auto farm and other", function()
+    print("Clicked")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Kederal/script.gg/main/loader.lua"))()
+end)
+-- Anti Afk
+local AntiAfk = Window:NewTab("Anti Afk")
+
+local AntiAfkSection = AntiAfk:NewSection("Anti Afk")
+AntiAfkSection:NewButton("Anti Afk script(READ DESC)", "click 10-∞ times ", function()
+    print("Clicked")
+    local vu = game:GetService("VirtualUser")
+    game:GetService("Players").LocalPlayer.Idled:connect(function()
+       vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+       wait(1)
+       vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    end)
+end)
