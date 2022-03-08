@@ -1,0 +1,1464 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+
+local Window = Library.CreateLib("Tapper Sim Script", "Synapse")
+local A_1 = "General"
+    local A_2 = "Particles"
+    local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.SettingsService.RF.ToggleSetting
+    Event:InvokeServer(A_1, A_2)
+--Main
+local MainSection = Main:NewSection("Main")
+MainSection:NewButton("Anti Afk script(READ DESC)", "click 10-inf times ", function()
+    print("Clicked")
+    local vu = game:GetService("VirtualUser")
+    game:GetService("Players").LocalPlayer.Idled:connect(function()
+       vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+       wait(1)
+       vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    end)
+end)
+local MainSection = Main:NewSection("Player")
+MainSection:NewSlider("Player Speed", "Set Player Speed", 300, 30, function(s) 
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+MainSection:NewSlider("Player JumpPower", "Set Player JumpPower", 250, 50, function(j) 
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = j
+end)
+
+local Main = Window:NewTab("Main")
+
+local AutoClickSection = Main:NewSection("Autoclick")
+
+AutoClickSection:NewToggle("AutoClicker", "AutoClick", function(state)
+    if state then
+        _G.autoclick = true
+        while _G.autoclick == true do
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.ClickService.RF.Click
+            Event:InvokeServer()
+            wait()
+        end
+    else
+        _G.autoclick = false
+    end
+end)
+local ServerSection = Main:NewSection("Server")
+ServerSection:NewButton("Rejoin", "Rejoin server", function()  
+    print("Clicked")
+     local ts = game:GetService("TeleportService")
+     local p = game:GetService("Players").LocalPlayer
+     ts:Teleport(game.PlaceId, p)
+end)
+local DailGroupSection = Main:NewSection("Daily/Group rewards")
+DailGroupSection:NewToggle("Auto Group Rewards", "Auto Redeem Group Rewards", function(state)
+    if state then
+        _G.GroupRewards = true
+        while _G.GroupRewards == true do
+            local A_1 = "Group Rewards"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.ChestService.RF.ClaimChest
+            Event:InvokeServer(A_1)
+        end
+    else
+        _G.GroupRewards = false
+    end
+end)
+DailGroupSection:NewToggle("Auto Daily Rewards", "Auto Redeem Daily Rewards", function(state)
+    if state then
+        _G.DailyRewards = true
+        while _G.DailyRewards == true do
+            local A_1 = "Daily Rewards"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.ChestService.RF.ClaimChest
+            Event:InvokeServer(A_1)
+        end
+    else
+        _G.DailyRewards = false
+    end
+end)
+local Teleport = Window:NewTab("Teleport")
+
+local TeleportSection = Teleport:NewSection("Teleport")
+TeleportSection:NewButton("Spawn Island", "Spawn Island Location Teleport", function()
+    print("Clicked")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-30.6797, 81.6343, -584.305)
+end)
+TeleportSection:NewButton("Grass Island", "Grass Island Location Teleport", function()
+    print("Clicked")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1026.22, -166.068, 2081.42)
+end)
+TeleportSection:NewButton("Beach Island", "Beach Island Location Teleport", function()
+    print("Clicked")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(287.771, -165.323, 2055.14)
+end)
+TeleportSection:NewButton("Volcano Island", "Volcano Island Location Teleport", function()
+    print("Clicked")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-459.435, -165.323, 2052.33)
+end)
+TeleportSection:NewButton("Space Island", "Space Island Location Teleport", function()
+    print("Clicked")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1170.46, -165.323, 2007.72)
+end)
+TeleportSection:NewButton("City Island", "City Island Location Teleport", function()
+    print("Clicked")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1628.52, -152.107, 2005.93)
+end)
+TeleportSection:NewButton("Sea Island", "Sea Island Location Teleport", function()
+    print("Clicked")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2255.92, -138.359, 2009.33)
+end)
+TeleportSection:NewButton("Candy Island", "Candy Island Location Teleport", function()
+    print("Clicked")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2876.64, -151.372, 2005.68)
+end)
+TeleportSection:NewButton("Toy Island", "Toy Island Location Teleport", function()
+    print("Clicked")
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3791.19, -144.113, 2011.4)
+end)
+local Eggs = Window:NewTab("Eggs")
+
+local EggsSection = Eggs:NewSection("Eggs")
+
+EggsSection:NewToggle("Basic Egg Open", "Click To Open x3 Basic egg", function(state)
+    if state then
+        _G.BasicEgg = true
+        while _G.BasicEgg == true do
+        local A_1 = "Basic"
+        local A_2 = 3
+        local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.PurchaseEgg
+        Event:InvokeServer(A_1, A_2) 
+        end
+    else
+        _G.BasicEgg = false
+    end
+end)
+EggsSection:NewToggle("Rare Egg Open", "Click To Open x3 Rare egg", function(state)
+    if state then
+        _G.RareEgg = true
+        while _G.RareEgg == true do
+        local A_1 = "Rare"
+        local A_2 = 3
+        local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.PurchaseEgg
+        Event:InvokeServer(A_1, A_2) 
+        end
+    else
+        _G.RareEgg = false
+    end
+end)
+EggsSection:NewToggle("Earth Egg Open", "Click To Open x3 Earth egg", function(state)
+    if state then
+        _G.EarthEgg = true
+        while _G.EarthEgg == true do
+        local A_1 = "Earth"
+        local A_2 = 3
+        local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.PurchaseEgg
+        Event:InvokeServer(A_1, A_2) 
+        end
+    else
+        _G.EarthEgg = false
+    end
+end)
+EggsSection:NewToggle("Sand Egg Open", "Click To Open x3 Sand egg", function(state)
+    if state then
+        _G.SandEgg = true
+        while _G.SandEgg == true do
+        local A_1 = "Sand"
+        local A_2 = 3
+        local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.PurchaseEgg
+        Event:InvokeServer(A_1, A_2) 
+        end
+    else
+        _G.SandEgg = false
+    end
+end)
+EggsSection:NewToggle("Lava Egg Open", "Click To Open x3 Lava egg", function(state)
+    if state then
+        _G.LavaEgg = true
+        while _G.LavaEgg == true do
+        local A_1 = "Lava"
+        local A_2 = 3
+        local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.PurchaseEgg
+        Event:InvokeServer(A_1, A_2) 
+        end
+    else
+        _G.LavaEgg = false
+    end
+end)
+EggsSection:NewToggle("Cosmic Egg Open", "Click To Open x3 Cosmic egg", function(state)
+    if state then
+        _G.CosmicEgg = true
+        while _G.CosmicEgg == true do
+        local A_1 = "Cosmic"
+        local A_2 = 3
+        local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.PurchaseEgg
+        Event:InvokeServer(A_1, A_2) 
+        end
+    else
+        _G.CosmicEgg = false
+    end
+end)
+EggsSection:NewToggle("Skyscraper Egg Open", "Click To Open x3 Skyscraper egg", function(state)
+    if state then
+        _G.SkyscraperEgg = true
+        while _G.SkyscraperEgg == true do
+        local A_1 = "Skyscraper"
+        local A_2 = 3
+        local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.PurchaseEgg
+        Event:InvokeServer(A_1, A_2) 
+        end
+    else
+        _G.SkyscraperEgg = false
+    end
+end)
+EggsSection:NewToggle("Trade Egg Open", "Click To Open x3 Trade egg", function(state)
+    if state then
+        _G.TradeEgg = true
+        while _G.TradeEgg == true do
+        local A_1 = "Trade"
+        local A_2 = 3
+        local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.PurchaseEgg
+        Event:InvokeServer(A_1, A_2) 
+        end
+    else
+        _G.TradeEgg = false
+    end
+end)
+EggsSection:NewToggle("Ocean Egg Open", "Click To Open x3 Ocean egg", function(state)
+    if state then
+        _G.OceanEgg = true
+        while _G.OceanEgg == true do
+        local A_1 = "Ocean"
+        local A_2 = 3
+        local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.PurchaseEgg
+        Event:InvokeServer(A_1, A_2) 
+        end
+    else
+        _G.OceanEgg = false
+    end
+end)
+EggsSection:NewToggle("Sweet Egg Open", "Click To Open x3 Sweet egg", function(state)
+    if state then
+        _G.SweetEgg = true
+        while _G.SweetEgg == true do
+        local A_1 = "Sweet"
+        local A_2 = 3
+        local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.EggService.RF.PurchaseEgg
+        Event:InvokeServer(A_1, A_2) 
+        end
+    else
+        _G.SweetEgg = false
+    end
+end)
+local AutoReb = Window:NewTab("Auto Rebirth")
+
+local AutoRebSection = AutoReb:NewSection("Auto Rebirth")
+
+AutoRebSection:NewToggle("+1 rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb1 = true
+        while _G.autoreb1 == true do
+         local reb1 = 1
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb1)
+    end
+    else
+        _G.autoreb1 = false
+    end
+end)
+AutoRebSection:NewToggle("+5 rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb2 = true
+        while _G.autoreb2 == true do
+         local reb2 = 2
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb2)
+    end
+    else
+        _G.autoreb2 = false
+    end
+end)
+AutoRebSection:NewToggle("+15 rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb3 = true
+        while _G.autoreb3 == true do
+         local reb3 = 3
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb3)
+    end
+    else
+        _G.autoreb3 = false
+    end
+end)
+AutoRebSection:NewToggle("+25 rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb4 = true
+        while _G.autoreb4 == true do
+         local reb4 = 4
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb4)
+    end
+    else
+        _G.autoreb4 = false
+    end
+end)
+AutoRebSection:NewToggle("+50 rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb5 = true
+        while _G.autoreb5 == true do
+         local reb5 = 5
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb5)
+    end
+    else
+        _G.autoreb5 = false
+    end
+end)
+AutoRebSection:NewToggle("+75 rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb6 = true
+        while _G.autoreb6 == true do
+         local reb6 = 6
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb6)
+    end
+    else
+        _G.autoreb6 = false
+    end
+end)
+AutoRebSection:NewToggle("+100 rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb7 = true
+        while _G.autoreb7 == true do
+         local reb7 = 7
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb7)
+    end
+    else
+        _G.autoreb7 = false
+    end
+end)
+AutoRebSection:NewToggle("+500 rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb8 = true
+        while _G.autoreb8 == true do
+         local reb8 = 8
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb8)
+    end
+    else
+        _G.autoreb8 = false
+    end
+end)
+AutoRebSection:NewToggle("+1.5k rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb9 = true
+        while _G.autoreb9 == true do
+         local reb9 = 9
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb9)
+    end
+    else
+        _G.autoreb9 = false
+    end
+end)
+AutoRebSection:NewToggle("+2.5k rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb10 = true
+        while _G.autoreb10 == true do
+         local reb10 = 10
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb10)
+    end
+    else
+        _G.autoreb10 = false
+    end
+end)
+AutoRebSection:NewToggle("+5k rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb11 = true
+        while _G.autoreb11 == true do
+         local reb11 = 11
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb11)
+    end
+    else
+        _G.autoreb11 = false
+    end
+end)
+AutoRebSection:NewToggle("+7.5k rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb12 = true
+        while _G.autoreb12 == true do
+         local reb12 = 12
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb12)
+    end
+    else
+        _G.autoreb12 = false
+    end
+end)
+AutoRebSection:NewToggle("+10k rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb13 = true
+        while _G.autoreb13 == true do
+         local reb13 = 13
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb13)
+    end
+    else
+        _G.autoreb13 = false
+    end
+end)
+AutoRebSection:NewToggle("+50k rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb14 = true
+        while _G.autoreb14 == true do
+         local reb14 = 14
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb14)
+    end
+    else
+        _G.autoreb14 = false
+    end
+end)
+AutoRebSection:NewToggle("+150k rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb15 = true
+        while _G.autoreb15 == true do
+         local reb15 = 15
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb15)
+    end
+    else
+        _G.autoreb15 = false
+    end
+end)
+AutoRebSection:NewToggle("+250k rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb16 = true
+        while _G.autoreb16 == true do
+         local reb16 = 16
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb16)
+    end
+    else
+        _G.autoreb16 = false
+    end
+end)
+AutoRebSection:NewToggle("+500k rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb17 = true
+        while _G.autoreb17 == true do
+         local reb17 = 17
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb17)
+    end
+    else
+        _G.autoreb17 = false
+    end
+end)
+AutoRebSection:NewToggle("+750k rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb18 = true
+        while _G.autoreb18 == true do
+         local reb18 = 18
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb18)
+    end
+    else
+        _G.autoreb18 = false
+    end
+end)
+AutoRebSection:NewToggle("+1M rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb19 = true
+        while _G.autoreb19 == true do
+         local reb19 = 19
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb19)
+    end
+    else
+        _G.autoreb19 = false
+    end
+end)
+AutoRebSection:NewToggle("+5M rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb20 = true
+        while _G.autoreb20 == true do
+         local reb20 = 20
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb20)
+    end
+    else
+        _G.autoreb20 = false
+    end
+end)
+AutoRebSection:NewToggle("+15M rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb21 = true
+        while _G.autoreb21 == true do
+         local reb21 = 21
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb21)
+    end
+    else
+        _G.autoreb21 = false
+    end
+end)
+AutoRebSection:NewToggle("+25M rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb22 = true
+        while _G.autoreb22 == true do
+         local reb22 = 22
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb22)
+    end
+    else
+        _G.autoreb22 = false
+    end
+end)
+AutoRebSection:NewToggle("+50M rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb23 = true
+        while _G.autoreb23 == true do
+         local reb23 = 23
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb23)
+    end
+    else
+        _G.autoreb23 = false
+    end
+end)
+AutoRebSection:NewToggle("+75M rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb24 = true
+        while _G.autoreb24 == true do
+         local reb24 = 24
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb24)
+    end
+    else
+        _G.autoreb24 = false
+    end
+end)
+AutoRebSection:NewToggle("+100M rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb25 = true
+        while _G.autoreb25 == true do
+         local reb25 = 25
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb25)
+    end
+    else
+        _G.autoreb25 = false
+    end
+end)
+AutoRebSection:NewToggle("+500M rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb26 = true
+        while _G.autoreb26 == true do
+         local reb26 = 26
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb26)
+    end
+    else
+        _G.autoreb26 = false
+    end
+end)
+AutoRebSection:NewToggle("+1.5B rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb27 = true
+        while _G.autoreb27 == true do
+         local reb27 = 27
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb27)
+    end
+    else
+        _G.autoreb27 = false
+    end
+end)
+AutoRebSection:NewToggle("+2.5B rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb28 = true
+        while _G.autoreb28 == true do
+         local reb28 = 28
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb28)
+    end
+    else
+        _G.autoreb28 = false
+    end
+end)
+AutoRebSection:NewToggle("+5B rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb29 = true
+        while _G.autoreb29 == true do
+         local reb29 = 29
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb29)
+    end
+    else
+        _G.autoreb29 = false
+    end
+end)
+AutoRebSection:NewToggle("+7.5B rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb30 = true
+        while _G.autoreb30 == true do
+         local reb30 = 30
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb30)
+    end
+    else
+        _G.autoreb30 = false
+    end
+end)
+AutoRebSection:NewToggle("+10B rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb31 = true
+        while _G.autoreb31 == true do
+         local reb31 = 31
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb31)
+    end
+    else
+        _G.autoreb31 = false
+    end
+end)
+AutoRebSection:NewToggle("+50B rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb32 = true
+        while _G.autoreb32 == true do
+         local reb32 = 32
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb32)
+    end
+    else
+        _G.autoreb32 = false
+    end
+end)
+AutoRebSection:NewToggle("+150B rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb33 = true
+        while _G.autoreb33 == true do
+         local reb33 = 33
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb33)
+    end
+    else
+        _G.autoreb33 = false
+    end
+end)
+AutoRebSection:NewToggle("+250B rebirth", "Auto Rebirth", function(state)
+    if state then
+        _G.autoreb34 = true
+        while _G.autoreb34 == true do
+         local reb34 = 34
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RebirthService.RF.Rebirth
+         Event:InvokeServer(reb34)
+    end
+    else
+        _G.autoreb34 = false
+    end
+end)
+
+local Pets = Window:NewTab("Pets")
+
+local PetsSection = Pets:NewSection("Pets")
+
+PetsSection:NewToggle("Equip Best", "Auto Equip Best Pets", function(state)
+    if state then
+        _G.autoeqpbest = true
+         while _G.autoeqpbest == true do
+         local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.InventoryService.RF.EquipBest
+         Event:InvokeServer()
+    end
+    else
+        _G.autoeqpbest = false
+    end
+end)
+local AutoUpg = Window:NewTab("Auto Upgrade")
+
+local AutoUpgSection = AutoUpg:NewSection("Auto Upgrade")
+local AutoUpgSection = AutoUpg:NewSection("Spawn")
+AutoUpgSection:NewToggle("Rebirth Options", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgReb1 = true
+        while _G.AutoUpgReb1 == true do
+            local A_1 = "Spawn"
+            local A_2 = "Rebirth Options"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgReb1 = false
+    end
+end)
+AutoUpgSection:NewToggle("More Gems", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgMoreGem1 = true
+        while _G.AutoUpgMoreGem1 == true do
+            local A_1 = "Spawn"
+            local A_2 = "More Gems"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgMoreGem1 = false
+    end
+end)
+AutoUpgSection:NewToggle("Crit Change", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgCritCh1 = true
+        while _G.AutoUpgCritCh1 == true do
+            local A_1 = "Spawn"
+            local A_2 = "Crit Chance"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgCritCh1 = false
+    end
+end)
+AutoUpgSection:NewToggle("Pet Storage", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgPetSt1 = true
+        while _G.AutoUpgPetSt1 == true do
+            local A_1 = "Spawn"
+            local A_2 = "Pet Storage"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgPetSt1 = false
+    end
+end)
+AutoUpgSection:NewToggle("Run Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgRunSpd1 = true
+        while _G.AutoUpgRunSpd1 == true do
+            local A_1 = "Spawn"
+            local A_2 = "Run Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgRunSpd1 = false
+    end
+end)
+AutoUpgSection:NewToggle("Egg Open Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgEggSpd1 = true
+        while _G.AutoUpgEggSpd1 == true do
+            local A_1 = "Spawn"
+            local A_2 = "Egg Open Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgEggSpd1 = false
+    end
+end)
+local AutoUpgSection = AutoUpg:NewSection("Grass")
+AutoUpgSection:NewToggle("Rebirth Options", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgReb2 = true
+        while _G.AutoUpgReb2 == true do
+            local A_1 = "Grass"
+            local A_2 = "Rebirth Options"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgReb2 = false
+    end
+end)
+AutoUpgSection:NewToggle("More Gems", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgMoreGem2 = true
+        while _G.AutoUpgMoreGem2 == true do
+            local A_1 = "Grass"
+            local A_2 = "More Gems"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgMoreGem2 = false
+    end
+end)
+AutoUpgSection:NewToggle("Crit Change", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgCritCh2 = true
+        while _G.AutoUpgCritCh2 == true do
+            local A_1 = "Grass"
+            local A_2 = "Crit Chance"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgCritCh2 = false
+    end
+end)
+AutoUpgSection:NewToggle("Pet Storage", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgPetSt2 = true
+        while _G.AutoUpgPetSt2 == true do
+            local A_1 = "Grass"
+            local A_2 = "Pet Storage"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgPetSt2 = false
+    end
+end)
+AutoUpgSection:NewToggle("Run Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgRunSpd2 = true
+        while _G.AutoUpgRunSpd2 == true do
+            local A_1 = "Grass"
+            local A_2 = "Run Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgRunSpd2 = false
+    end
+end)
+AutoUpgSection:NewToggle("Egg Open Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgEggSpd2 = true
+        while _G.AutoUpgEggSpd2 == true do
+            local A_1 = "Grass"
+            local A_2 = "Egg Open Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgEggSpd2 = false
+    end
+end)
+local AutoUpgSection = AutoUpg:NewSection("Beach")
+AutoUpgSection:NewToggle("Rebirth Options", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgReb3 = true
+        while _G.AutoUpgReb3 == true do
+            local A_1 = "Beach"
+            local A_2 = "Rebirth Options"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgReb3 = false
+    end
+end)
+AutoUpgSection:NewToggle("More Gems", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgMoreGem3 = true
+        while _G.AutoUpgMoreGem3 == true do
+            local A_1 = "Beach"
+            local A_2 = "More Gems"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgMoreGem3 = false
+    end
+end)
+AutoUpgSection:NewToggle("Crit Change", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgCritCh3 = true
+        while _G.AutoUpgCritCh3 == true do
+            local A_1 = "Beach"
+            local A_2 = "Crit Chance"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgCritCh3 = false
+    end
+end)
+AutoUpgSection:NewToggle("Pet Storage", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgPetSt3 = true
+        while _G.AutoUpgPetSt3 == true do
+            local A_1 = "Beach"
+            local A_2 = "Pet Storage"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgPetSt3 = false
+    end
+end)
+AutoUpgSection:NewToggle("Run Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgRunSpd3 = true
+        while _G.AutoUpgRunSpd3 == true do
+            local A_1 = "Beach"
+            local A_2 = "Run Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgRunSpd3 = false
+    end
+end)
+AutoUpgSection:NewToggle("Egg Open Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgEggSpd3 = true
+        while _G.AutoUpgEggSpd3 == true do
+            local A_1 = "Beach"
+            local A_2 = "Egg Open Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else 
+        _G.AutoUpgEggSpd3 = false
+    end
+end)
+local AutoUpgSection = AutoUpg:NewSection("Volcano")
+AutoUpgSection:NewToggle("Rebirth Options", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgReb4 = true
+        while _G.AutoUpgReb4 == true do
+            local A_1 = "Volcano"
+            local A_2 = "Rebirth Options"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgReb4 = false
+    end
+end)
+AutoUpgSection:NewToggle("More Gems", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgMoreGem4 = true
+        while _G.AutoUpgMoreGem4 == true do
+            local A_1 = "Volcano"
+            local A_2 = "More Gems"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgMoreGem4 = false
+    end
+end)
+AutoUpgSection:NewToggle("Crit Change", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgCritCh4 = true
+        while _G.AutoUpgCritCh4 == true do
+            local A_1 = "Volcano"
+            local A_2 = "Crit Chance"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgCritCh4 = false
+    end
+end)
+AutoUpgSection:NewToggle("Pet Storage", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgPetSt4 = true
+        while _G.AutoUpgPetSt4 == true do
+            local A_1 = "Volcano"
+            local A_2 = "Pet Storage"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgPetSt4 = false
+    end
+end)
+AutoUpgSection:NewToggle("Run Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgRunSpd4 = true
+        while _G.AutoUpgRunSpd4 == true do
+            local A_1 = "Volcano"
+            local A_2 = "Run Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgRunSpd4 = false
+    end
+end)
+AutoUpgSection:NewToggle("Egg Open Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgEggSpd4 = true
+        while _G.AutoUpgEggSpd4 == true do
+            local A_1 = "Volcano"
+            local A_2 = "Egg Open Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else 
+        _G.AutoUpgEggSpd4 = false
+    end
+end)
+local AutoUpgSection = AutoUpg:NewSection("Space")
+AutoUpgSection:NewToggle("Rebirth Options", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgReb5 = true
+        while _G.AutoUpgReb5 == true do
+            local A_1 = "Space"
+            local A_2 = "Rebirth Options"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgReb5 = false
+    end
+end)
+AutoUpgSection:NewToggle("More Gems", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgMoreGem5 = true
+        while _G.AutoUpgMoreGem5 == true do
+            local A_1 = "Space"
+            local A_2 = "More Gems"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgMoreGem5 = false
+    end
+end)
+AutoUpgSection:NewToggle("Crit Change", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgCritCh5 = true
+        while _G.AutoUpgCritCh5 == true do
+            local A_1 = "Space"
+            local A_2 = "Crit Chance"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgCritCh5 = false
+    end
+end)
+AutoUpgSection:NewToggle("Pet Storage", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgPetSt5 = true
+        while _G.AutoUpgPetSt5 == true do
+            local A_1 = "Space"
+            local A_2 = "Pet Storage"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgPetSt5 = false
+    end
+end)
+AutoUpgSection:NewToggle("Run Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgRunSpd5 = true
+        while _G.AutoUpgRunSpd5 == true do
+            local A_1 = "Space"
+            local A_2 = "Run Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgRunSpd5 = false
+    end
+end)
+AutoUpgSection:NewToggle("Egg Open Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgEggSpd5 = true
+        while _G.AutoUpgEggSpd5 == true do
+            local A_1 = "Space"
+            local A_2 = "Egg Open Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else 
+        _G.AutoUpgEggSpd5 = false
+    end
+end)
+local AutoUpgSection = AutoUpg:NewSection("City")
+AutoUpgSection:NewToggle("Rebirth Options", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgReb65 = true
+        while _G.AutoUpgReb6 == true do
+            local A_1 = "City"
+            local A_2 = "Rebirth Options"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgReb6 = false
+    end
+end)
+AutoUpgSection:NewToggle("More Gems", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgMoreGem6 = true
+        while _G.AutoUpgMoreGem6 == true do
+            local A_1 = "City"
+            local A_2 = "More Gems"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgMoreGem6 = false
+    end
+end)
+AutoUpgSection:NewToggle("Crit Change", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgCritCh6 = true
+        while _G.AutoUpgCritCh6 == true do
+            local A_1 = "City"
+            local A_2 = "Crit Chance"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgCritCh6 = false
+    end
+end)
+AutoUpgSection:NewToggle("Pet Storage", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgPetSt6 = true
+        while _G.AutoUpgPetSt6 == true do
+            local A_1 = "City"
+            local A_2 = "Pet Storage"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgPetSt6 = false
+    end
+end)
+AutoUpgSection:NewToggle("Run Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgRunSpd6 = true
+        while _G.AutoUpgRunSpd6 == true do
+            local A_1 = "City"
+            local A_2 = "Run Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgRunSpd6 = false
+    end
+end)
+AutoUpgSection:NewToggle("Egg Open Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgEggSpd6 = true
+        while _G.AutoUpgEggSpd6 == true do
+            local A_1 = "City"
+            local A_2 = "Egg Open Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgEggSpd6 = false
+    end
+end)
+local AutoUpgSection = AutoUpg:NewSection("Sea")
+AutoUpgSection:NewToggle("Rebirth Options", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgReb7 = true
+        while _G.AutoUpgReb7 == true do
+            local A_1 = "Sea"
+            local A_2 = "Rebirth Options"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgReb7 = false
+    end
+end)
+AutoUpgSection:NewToggle("More Gems", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgMoreGem7 = true
+        while _G.AutoUpgMoreGem7 == true do
+            local A_1 = "Sea"
+            local A_2 = "More Gems"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgMoreGem7 = false
+    end
+end)
+AutoUpgSection:NewToggle("Crit Change", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgCritCh7 = true
+        while _G.AutoUpgCritCh7 == true do
+            local A_1 = "Sea"
+            local A_2 = "Crit Chance"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgCritCh7 = false
+    end
+end)
+AutoUpgSection:NewToggle("Pet Storage", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgPetSt7 = true
+        while _G.AutoUpgPetSt7 == true do
+            local A_1 = "Sea"
+            local A_2 = "Pet Storage"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgPetSt7 = false
+    end
+end)
+AutoUpgSection:NewToggle("Run Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgRunSpd7 = true
+        while _G.AutoUpgRunSpd7 == true do
+            local A_1 = "Sea"
+            local A_2 = "Run Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgRunSpd7 = false
+    end
+end)
+AutoUpgSection:NewToggle("Egg Open Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgEggSpd7 = true
+        while _G.AutoUpgEggSpd7 == true do
+            local A_1 = "Sea"
+            local A_2 = "Egg Open Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else 
+        _G.AutoUpgEggSpd7 = false
+    end
+end)
+local AutoUpgSection = AutoUpg:NewSection("Candy")
+AutoUpgSection:NewToggle("Rebirth Options", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgReb8 = true
+        while _G.AutoUpgReb8 == true do
+            local A_1 = "Candy"
+            local A_2 = "Rebirth Options"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgReb8 = false
+    end
+end)
+AutoUpgSection:NewToggle("More Gems", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgMoreGem8 = true
+        while _G.AutoUpgMoreGem8 == true do
+            local A_1 = "Candy"
+            local A_2 = "More Gems"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgMoreGem8 = false
+    end
+end)
+AutoUpgSection:NewToggle("Crit Change", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgCritCh8 = true
+        while _G.AutoUpgCritCh8 == true do
+            local A_1 = "Candy"
+            local A_2 = "Crit Chance"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgCritCh8 = false
+    end
+end)
+AutoUpgSection:NewToggle("Pet Storage", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgPetSt8 = true
+        while _G.AutoUpgPetSt8 == true do
+            local A_1 = "Candy"
+            local A_2 = "Pet Storage"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgPetSt8 = false
+    end
+end)
+AutoUpgSection:NewToggle("Run Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgRunSpd8 = true
+        while _G.AutoUpgRunSpd8 == true do
+            local A_1 = "Candy"
+            local A_2 = "Run Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgRunSpd8 = false
+    end
+end)
+AutoUpgSection:NewToggle("Egg Open Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgEggSpd8 = true
+        while _G.AutoUpgEggSpd8 == true do
+            local A_1 = "Candy"
+            local A_2 = "Egg Open Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else 
+        _G.AutoUpgEggSpd8 = false
+    end
+end)
+local AutoUpgSection = AutoUpg:NewSection("ToyLand")
+AutoUpgSection:NewToggle("Rebirth Options", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgReb9 = true
+        while _G.AutoUpgReb9 == true do
+            local A_1 = "ToyLand"
+            local A_2 = "Rebirth Options"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgReb9 = false
+    end
+end)
+AutoUpgSection:NewToggle("More Gems", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgMoreGem9 = true
+        while _G.AutoUpgMoreGem9 == true do
+            local A_1 = "ToyLand"
+            local A_2 = "More Gems"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgMoreGem9 = false
+    end
+end)
+AutoUpgSection:NewToggle("Crit Change", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgCritCh9 = true
+        while _G.AutoUpgCritCh9 == true do
+            local A_1 = "ToyLand"
+            local A_2 = "Crit Chance"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgCritCh9 = false
+    end
+end)
+AutoUpgSection:NewToggle("Pet Storage", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgPetSt9 = true
+        while _G.AutoUpgPetSt9 == true do
+            local A_1 = "ToyLand"
+            local A_2 = "Pet Storage"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgPetSt9 = false
+    end
+end)
+AutoUpgSection:NewToggle("Run Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgRunSpd9 = true
+        while _G.AutoUpgRunSpd9 == true do
+            local A_1 = "ToyLand"
+            local A_2 = "Run Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else
+        _G.AutoUpgRunSpd9 = false
+    end
+end)
+AutoUpgSection:NewToggle("Egg Open Speed", "Auto Upgrade", function(state)
+    if state then
+        _G.AutoUpgEggSpd9 = true
+        while _G.AutoUpgEggSpd9 == true do
+            local A_1 = "ToyLand"
+            local A_2 = "Egg Open Speed"
+            local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.UpgradeService.RF.Upgrade
+            Event:InvokeServer(A_1, A_2)
+    end
+    else 
+        _G.AutoUpgEggSpd9 = false
+    end
+end)
+local Rewards = Window:NewTab("Rewards")
+
+local RewardsSection = Rewards:NewSection("Rewards")
+RewardsSection:NewToggle("Islands", "Auto collect islands rewards", function(state)
+    if state then
+    _G.IslandsRewards = true
+     while _G.IslandsRewards == true do
+     local A_1 = "Islands"
+     local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RewardService.RF.ClaimSpecificReward
+     Event:InvokeServer(A_1)
+     end
+    else
+        _G.IslandsRewards = false
+    end
+end)
+RewardsSection:NewToggle("Eggs", "Auto collect Eggs rewards", function(state)
+    if state then
+    _G.EggsRewards = true
+     while _G.EggsRewards == true do
+     local A_1 = "Eggs"
+     local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RewardService.RF.ClaimSpecificReward
+     Event:InvokeServer(A_1)
+     end
+    else
+        _G.EggsRewards = false
+    end
+end)
+RewardsSection:NewToggle("Upgrades", "Auto collect Upgrades rewards", function(state)
+    if state then
+    _G.UpgradesRewards = true
+     while _G.UpgradesRewards == true do
+     local A_1 = "Upgrades"
+     local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RewardService.RF.ClaimSpecificReward
+     Event:InvokeServer(A_1)
+     end
+    else
+        _G.UpgradesRewards = false
+    end
+end)
+RewardsSection:NewToggle("Rebirth", "Auto collect Rebirth rewards", function(state)
+    if state then
+    _G.RebirthRewards = true
+     while _G.RebirthRewards == true do
+     local A_1 = "Rebirth"
+     local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RewardService.RF.ClaimSpecificReward
+     Event:InvokeServer(A_1)
+     end
+    else
+        _G.RebirthRewards = false
+    end
+end)
+RewardsSection:NewToggle("Equip Pet", "Auto collect Equip Pet rewards", function(state)
+    if state then
+    _G.EquipPetRewards = true
+     while _G.EquipPetRewards == true do
+     local A_1 = "Equip Pet"
+     local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RewardService.RF.ClaimSpecificReward
+     Event:InvokeServer(A_1)
+     end
+    else
+        _G.EquipPetRewards = false
+    end
+end)
+RewardsSection:NewToggle("Clicks", "Auto collect Clicks rewards", function(state)
+    if state then
+    _G.ClicksRewards = true
+     while _G.ClicksRewards == true do
+     local A_1 = "Clicks"
+     local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.RewardService.RF.ClaimSpecificReward
+     Event:InvokeServer(A_1)
+     end
+    else
+        _G.ClicksRewards = false
+    end
+end)
