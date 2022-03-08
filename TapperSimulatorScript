@@ -6,9 +6,6 @@ local A_1 = "General"
     local Event = game:GetService("ReplicatedStorage").Packages.Knit.Services.SettingsService.RF.ToggleSetting
     Event:InvokeServer(A_1, A_2)
 --Main
-
-local Main = Window:NewTab("Main")
-
 local MainSection = Main:NewSection("Main")
 MainSection:NewButton("Anti Afk script(READ DESC)", "click 10-inf times ", function()
     print("Clicked")
@@ -26,6 +23,8 @@ end)
 MainSection:NewSlider("Player JumpPower", "Set Player JumpPower", 250, 50, function(j) 
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = j
 end)
+
+local Main = Window:NewTab("Main")
 
 local AutoClickSection = Main:NewSection("Autoclick")
 
