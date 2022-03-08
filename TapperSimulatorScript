@@ -9,6 +9,24 @@ local A_1 = "General"
 
 local Main = Window:NewTab("Main")
 
+local MainSection = Main:NewSection("Main")
+MainSection:NewButton("Anti Afk script(READ DESC)", "click 10-inf times ", function()
+    print("Clicked")
+    local vu = game:GetService("VirtualUser")
+    game:GetService("Players").LocalPlayer.Idled:connect(function()
+       vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+       wait(1)
+       vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    end)
+end)
+local MainSection = Main:NewSection("Player")
+MainSection:NewSlider("Player Speed", "Set Player Speed", 300, 30, function(s) 
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+MainSection:NewSlider("Player JumpPower", "Set Player JumpPower", 250, 50, function(j) 
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = j
+end)
+
 local AutoClickSection = Main:NewSection("Autoclick")
 
 AutoClickSection:NewToggle("AutoClicker", "AutoClick", function(state)
