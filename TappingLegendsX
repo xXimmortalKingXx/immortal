@@ -1,0 +1,686 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+
+local Window = Library.CreateLib("Tapper Sim Script", "GrapeTheme")
+
+local Main = Window:NewTab("Main")
+
+local A_1 = "Settings_DisableMessages"
+local Event = game:GetService("ReplicatedStorage").Remotes.Settings
+Event:FireServer(A_1)
+
+local MainSection = Main:NewSection("Main")
+
+MainSection:NewKeybind("ToggleUI", "ToggleUI", Enum.KeyCode.F, function()
+	Library:ToggleUI()
+end)
+
+local AntiAFKSection = Main:NewSection("Main")
+
+AntiAFKSection:NewButton("Anti Afk script(READ DESC)", "click 10-inf times ", function()
+    print("Clicked")
+    local vu = game:GetService("VirtualUser")
+    game:GetService("Players").LocalPlayer.Idled:connect(function()
+       vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+       wait(1)
+       vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+    end)
+end)
+
+local RejoinSection = Main:NewSection("Rejoin Game")
+
+RejoinSection:NewButton("Rejoin", "Rejoin game", function()
+    print("Clicked")
+    local tpservice= game:GetService("TeleportService")
+    local plr = game.Players.LocalPlayer
+    tpservice:Teleport(game.PlaceId, plr)
+end)
+
+local AutoClickSection = Main:NewSection("Autoclick")
+
+AutoClickSection:NewToggle("AutoClicker", "AutoClick", function(state)
+     if state then
+         _G.autoclick = true
+            while _G.autoclick == true do
+                local A_1 = "13252587683095190000"
+                local Event = game:GetService("ReplicatedStorage").Remotes.Tap
+                Event:FireServer(A_1)   
+                wait()         
+            end
+        else
+            _G.autoclick = false
+        end
+    end)
+
+local Exchange = Window:NewTab("Exchange")
+
+local ExchangeSection = Exchange:NewSection("Exchange")
+    
+ExchangeSection:NewButton("Exchange Luck vial", "exchange luck vial", function()
+    print("Clicked")
+    local A_1 = "VialLuck"
+    local Event = game:GetService("ReplicatedStorage").Remotes.ExchangeVial
+    Event:FireServer(A_1)
+end)
+
+ExchangeSection:NewButton("Exchange Rebirths vial", "exchange Rebirths vial", function()
+    print("Clicked")
+    local A_1 = "VialRebirths"
+    local Event = game:GetService("ReplicatedStorage").Remotes.ExchangeVial
+    Event:FireServer(A_1)
+end)
+
+ExchangeSection:NewButton("Exchange Taps vial", "exchange Taps vial", function()
+    print("Clicked")
+    local A_1 = "VialTaps"
+    local Event = game:GetService("ReplicatedStorage").Remotes.ExchangeVial
+    Event:FireServer(A_1)
+end)
+
+ExchangeSection:NewButton("Exchange Damage vial", "exchange Damage vial", function()
+    print("Clicked")
+    local A_1 = "VialDamage"
+    local Event = game:GetService("ReplicatedStorage").Remotes.ExchangeVial
+    Event:FireServer(A_1)
+end)
+
+local Pets = Window:NewTab("Pets")
+
+local PetsSection = Pets:NewSection("Pets")
+    
+PetsSection:NewButton("Equip Best", "Equip best pets", function()
+    print("Clicked")
+    local Event = game:GetService("ReplicatedStorage").Remotes.EquipBest
+    Event:InvokeServer()
+end)
+
+PetsSection:NewToggle("Auto Equip Best", "Equip Best by Auto", function(EquipBest)
+    if EquipBest then
+        _G.EquipBest = true
+           while _G.EquipBest == true do
+            local Event = game:GetService("ReplicatedStorage").Remotes.EquipBest
+            Event:InvokeServer() 
+            wait(20)         
+           end
+       else
+           _G.EquipBest = false
+       end
+end)
+
+
+local Vial = Window:NewTab("Vial")
+
+local VialsSection = Vial:NewSection("Vials")
+
+VialsSection:NewToggle("VialTaps Auto", "VialTaps Auto Use", function(VialTaps)
+    if VialTaps then
+        _G.VialTaps = true
+        while _G.VialTaps == true do
+        local A_1 = "VialTaps"
+        local Event = game:GetService("ReplicatedStorage").Remotes.UseVial
+        Event:FireServer(A_1)
+        wait()
+        end
+    else
+        _G.VialTaps = false
+    end
+end)
+VialsSection:NewToggle("VialRebirths Auto", "VialRebirths Auto Use", function(VialRebirths)
+    if VialRebirths then
+        _G.VialRebirths = true
+        while _G.VialRebirths == true do
+        local A_1 = "VialRebirths"
+        local Event = game:GetService("ReplicatedStorage").Remotes.UseVial
+        Event:FireServer(A_1)
+        wait()
+        end
+    else
+        _G.VialRebirths = false
+    end
+end)
+VialsSection:NewToggle("VialLuck Auto", "VialLuck Auto Use", function(VialLuck)
+    if VialLuck then
+        _G.VialLuck = true
+        while _G.VialLuck == true do
+        local A_1 = "VialLuck"
+        local Event = game:GetService("ReplicatedStorage").Remotes.UseVial
+        Event:FireServer(A_1)
+        wait()
+        end
+    else
+        _G.VialLuck = false
+    end
+end)
+VialsSection:NewToggle("VialDamage Auto", "VialDamage Auto Use", function(VialLuck)
+    if VialDamage then
+        _G.VialDamage = true
+        while _G.VialDamage == true do
+        local A_1 = "VialDamage"
+        local Event = game:GetService("ReplicatedStorage").Remotes.UseVial
+        Event:FireServer(A_1)
+        wait()
+        end
+    else
+        _G.VialDamage = false
+    end
+end)
+
+local Extract = Window:NewTab("Extract")
+
+local ExtractSection = Extract:NewSection("AutoExtract")
+
+ExtractSection:NewToggle("Auto Extract for CLICKS", "Auto Extract for CLICKS", function(AutoExtractClick)
+     if AutoExtractClick then
+         _G.AutoExtractClick = true
+            while _G.AutoExtractClick == true do
+                local A_1 = 1
+                local Event = game:GetService("ReplicatedStorage").Remotes.Extract
+                Event:FireServer(A_1)                  
+                wait()         
+            end
+        else
+            _G.AutoExtractClick = false
+        end
+    end)
+
+ExtractSection:NewToggle("Auto Extract for GEMS", "Auto Extract for GEMS", function(AutoExtractGem)
+        if AutoExtractGem then
+            _G.AutoExtractGem = true
+               while _G.AutoExtractGem == true do
+                   local A_1 = 2
+                   local Event = game:GetService("ReplicatedStorage").Remotes.Extract
+                   Event:FireServer(A_1)                  
+                   wait()         
+               end
+           else
+               _G.AutoExtractGem = false
+           end
+       end)
+
+ExtractSection:NewToggle("Auto Extract for TOKENS", "Auto Extract for TOKENS", function(AutoExtractTOKENS)
+        if AutoExtractTOKENS then
+            _G.AutoExtractTOKENS = true
+               while _G.AutoExtractTOKENS == true do
+                   local A_1 = 3
+                   local Event = game:GetService("ReplicatedStorage").Remotes.Extract
+                   Event:FireServer(A_1)                  
+                   wait()         
+               end
+           else
+               _G.AutoExtractTOKENS = false
+           end
+       end)
+
+local VialExtractSection = Extract:NewSection("Vials Extract")
+
+VialExtractSection:NewToggle("Auto Extract Click Vial", "Auto Extract Click Vial", function(AutoExtractClick)
+    if AutoExtractClick then
+        _G.AutoExtractClick = true
+            while _G.AutoExtractClick == true do
+                local A_1 = 4
+                local Event = game:GetService("ReplicatedStorage").Remotes.Extract
+                Event:FireServer(A_1)                  
+                wait()         
+            end
+        else
+            _G.AutoExtractClick = false
+        end
+    end)
+
+VialExtractSection:NewButton("Extract Click vial x1", "Extract Click vial one or more time(1 by click)", function()
+    print("Clicked")
+    local A_1 = "VialClick"
+    local A_1 = 4
+    local Event = game:GetService("ReplicatedStorage").Remotes.Extract
+    Event:FireServer(A_1)                  
+    wait()
+end)
+
+VialExtractSection:NewToggle("Auto Extract Luck Vial", "Auto Extract Luck Vial", function(AutoExtractLuck)
+        if AutoExtractLuck then
+            _G.AutoExtractLuck = true
+                while _G.AutoExtractLuck == true do
+                    local A_1 = 5
+                    local Event = game:GetService("ReplicatedStorage").Remotes.Extract
+                    Event:FireServer(A_1)                  
+                    wait()         
+                end
+            else
+                _G.AutoExtractLuck = false
+            end
+        end)
+
+VialExtractSection:NewButton("Extract Luck vial x1", "Extract luck vial one or more time(1 by click)", function()
+        print("Clicked")
+        local A_1 = "VialLuck"
+        local A_1 = 5
+        local Event = game:GetService("ReplicatedStorage").Remotes.Extract
+        Event:FireServer(A_1)                  
+        wait()
+    end)
+
+VialExtractSection:NewToggle("Auto Extract Damage Vial", "Auto Extract Damage Vial", function(AutoExtractDamage)
+        if AutoExtractDamage then
+            _G.AutoExtractDamage = true
+                while _G.AutoExtractDamage == true do
+                    local A_1 = 6
+                    local Event = game:GetService("ReplicatedStorage").Remotes.Extract
+                    Event:FireServer(A_1)                  
+                    wait()         
+                end
+            else
+                _G.AutoExtractDamage = false
+            end
+        end)
+                
+VialExtractSection:NewButton("Extract Damage vial x1", "Extract Damage vial one or more time(1 by click)", function()
+        print("Clicked")
+        local A_1 = "VialDamage"
+        local A_1 = 6
+        local Event = game:GetService("ReplicatedStorage").Remotes.Extract
+        Event:FireServer(A_1)                  
+        wait()
+    end)
+
+VialExtractSection:NewToggle("Auto Extract Rebirths Vial", "Auto Extract Rebirths Vial", function(AutoExtractDamage)
+        if AutoExtractRebirths then
+            _G.AutoExtractRebirths = true
+                while _G.AutoExtractRebirths == true do
+                    local A_1 = 7
+                    local Event = game:GetService("ReplicatedStorage").Remotes.Extract
+                    Event:FireServer(A_1)                  
+                    wait()         
+                end
+            else
+                _G.AutoExtractRebirths = false
+            end
+        end)
+                
+VialExtractSection:NewButton("Extract Rebirths vial x1", "Extract Rebirths vial one or more time(1 by click)", function()
+        print("Clicked")
+        local A_1 = "VialRebirths"
+        local A_1 = 7
+        local Event = game:GetService("ReplicatedStorage").Remotes.Extract
+        Event:FireServer(A_1)                  
+        wait()
+end)
+
+local Rebirth = Window:NewTab("Rebirths")
+
+local RebirthSection = Rebirth:NewSection("Auto Rebirth")
+
+RebirthSection:NewToggle("+1 rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 1            
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+5 rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 2            
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+20 rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 3           
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+80 rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 4          
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+400 rebirth", "rebirth", function(rebirthauto)
+        if rebirthauto then
+            _G.howmuchreb = 5         
+           else
+            _G.howmuchreb = false
+           end
+end)
+RebirthSection:NewToggle("+2K rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 6         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+10K rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 7          
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+40K rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 8          
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+100K rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 9          
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+400K rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 10         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+2M rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 11        
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+10M rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 12         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+40M rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 13         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+100M rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 14         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+500M rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 15         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+2B rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 16         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+40B rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 17         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+200B rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 18         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+1T rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 19        
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+2T rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 20         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+2B rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 21         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+10T rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 22         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+40T rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 23         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+100T rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 24         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+500T rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 25         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+2QD rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 26         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+10QD rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 27         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+100QD rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 28         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+500QD rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 29        
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+2QN rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 30         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+10QN rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 31         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+40QN rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 32         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+200QN rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 33         
+       else
+        _G.howmuchreb = false
+       end
+end)
+
+RebirthSection:NewToggle("Turn On/Off", "Auto Extract Rebirths Vial", function(RebirthSection)
+    if RebirthSection then
+        _G.RebirthSection = true
+            while _G.RebirthSection == true do
+            local A_1 = _G.howmuchreb
+            local Event = game:GetService("ReplicatedStorage").Remotes.Rebirth
+            Event:FireServer(A_1)
+            wait()
+            end
+        else
+            _G.RebirthSection = false
+        end
+end)
+
+local AutoPresent = Window:NewTab("Playtime Rewards")
+
+local AutoPresentSection = AutoPresent:NewSection("Auto Playtime Rewards")
+
+AutoPresentSection:NewToggle("Auto Playtime Reward 1", "Auto Collect Plaztine reward", function(AutoPresentSection)
+    if AutoPresentSection then
+        _G.AutoPresentSection = true
+            while _G.AutoPresentSection == true do
+            local A_1 = 1
+            local Event = game:GetService("ReplicatedStorage").Remotes.PlaytimeReward
+            Event:FireServer(A_1)                
+            wait(3600)
+            end
+        else
+            _G.AutoPresentSection = false
+        end
+end)
+AutoPresentSection:NewToggle("Auto Playtime Reward 2", "Auto Collect Plaztine reward", function(AutoPresentSection)
+    if AutoPresentSection then
+        _G.AutoPresentSection = true
+            while _G.AutoPresentSection == true do
+            local A_1 = 2
+            local Event = game:GetService("ReplicatedStorage").Remotes.PlaytimeReward
+            Event:FireServer(A_1)                
+            wait(3600)
+            end
+        else
+            _G.AutoPresentSection = false
+        end
+end)
+AutoPresentSection:NewToggle("Auto Playtime Reward 3", "Auto Collect Plaztine reward", function(AutoPresentSection)
+    if AutoPresentSection then
+        _G.AutoPresentSection = true
+            while _G.AutoPresentSection == true do
+            local A_1 = 3
+            local Event = game:GetService("ReplicatedStorage").Remotes.PlaytimeReward
+            Event:FireServer(A_1)                
+            wait(3600)
+            end
+        else
+            _G.AutoPresentSection = false
+        end
+end)
+AutoPresentSection:NewToggle("Auto Playtime Reward 4", "Auto Collect Plaztine reward", function(AutoPresentSection)
+    if AutoPresentSection then
+        _G.AutoPresentSection = true
+            while _G.AutoPresentSection == true do
+            local A_1 = 4
+            local Event = game:GetService("ReplicatedStorage").Remotes.PlaytimeReward
+            Event:FireServer(A_1)                
+            wait(3600)
+            end
+        else
+            _G.AutoPresentSection = false
+        end
+end)
+AutoPresentSection:NewToggle("Auto Playtime Reward 5", "Auto Collect Plaztine reward", function(AutoPresentSection)
+    if AutoPresentSection then
+        _G.AutoPresentSection = true
+            while _G.AutoPresentSection == true do
+            local A_1 = 5
+            local Event = game:GetService("ReplicatedStorage").Remotes.PlaytimeReward
+            Event:FireServer(A_1)                
+            wait(3600)
+            end
+        else
+            _G.AutoPresentSection = false
+        end
+end)
+AutoPresentSection:NewToggle("Auto Playtime Reward 6", "Auto Collect Plaztine reward", function(AutoPresentSection)
+    if AutoPresentSection then
+        _G.AutoPresentSection = true
+            while _G.AutoPresentSection == true do
+            local A_1 = 6
+            local Event = game:GetService("ReplicatedStorage").Remotes.PlaytimeReward
+            Event:FireServer(A_1)                
+            wait(3600)
+            end
+        else
+            _G.AutoPresentSection = false
+        end
+end)
+AutoPresentSection:NewToggle("Auto Playtime Reward 7", "Auto Collect Plaztine reward", function(AutoPresentSection)
+    if AutoPresentSection then
+        _G.AutoPresentSection = true
+            while _G.AutoPresentSection == true do
+            local A_1 = 7
+            local Event = game:GetService("ReplicatedStorage").Remotes.PlaytimeReward
+            Event:FireServer(A_1)                
+            wait(3600)
+            end
+        else
+            _G.AutoPresentSection = false
+        end
+end)
+AutoPresentSection:NewToggle("Auto Playtime Reward 8", "Auto Collect Plaztine reward", function(AutoPresentSection)
+    if AutoPresentSection then
+        _G.AutoPresentSection = true
+            while _G.AutoPresentSection == true do
+            local A_1 = 8
+            local Event = game:GetService("ReplicatedStorage").Remotes.PlaytimeReward
+            Event:FireServer(A_1)                
+            wait(3600)
+            end
+        else
+            _G.AutoPresentSection = false
+        end
+end)
+AutoPresentSection:NewToggle("Auto Playtime Reward 9", "Auto Collect Plaztine reward", function(AutoPresentSection)
+    if AutoPresentSection then
+        _G.AutoPresentSection = true
+            while _G.AutoPresentSection == true do
+            local A_1 = 9
+            local Event = game:GetService("ReplicatedStorage").Remotes.PlaytimeReward
+            Event:FireServer(A_1)                
+            wait(3600)
+            end
+        else
+            _G.AutoPresentSection = false
+        end
+end)
+
+
+
+
+
+
+
+
+
