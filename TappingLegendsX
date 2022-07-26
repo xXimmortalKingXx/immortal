@@ -14,7 +14,7 @@ MainSection:NewKeybind("ToggleUI", "ToggleUI", Enum.KeyCode.F, function()
 	Library:ToggleUI()
 end)
 
-local PlayerSection = Main:NewSection("Main")
+local PlayerSection = Main:NewSection("Player")
 
 PlayerSection:NewButton("Anti Afk script(READ DESC)", "click 10-inf times ", function()
     print("Clicked")
