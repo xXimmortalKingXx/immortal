@@ -14,9 +14,9 @@ MainSection:NewKeybind("ToggleUI", "ToggleUI", Enum.KeyCode.F, function()
 	Library:ToggleUI()
 end)
 
-local AntiAFKSection = Main:NewSection("Main")
+local PlayerSection = Main:NewSection("Main")
 
-AntiAFKSection:NewButton("Anti Afk script(READ DESC)", "click 10-inf times ", function()
+PlayerSection:NewButton("Anti Afk script(READ DESC)", "click 10-inf times ", function()
     print("Clicked")
     local vu = game:GetService("VirtualUser")
     game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -24,6 +24,14 @@ AntiAFKSection:NewButton("Anti Afk script(READ DESC)", "click 10-inf times ", fu
        wait(1)
        vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
     end)
+end)
+
+PlayerSection:NewSlider("WalkSpeed", "Walk Speed", 100, 0, function(s) 
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+PlayerSection:NewSlider("JumpPower", "Jump Power", 50, 0, function(p) 
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = p
 end)
 
 local RejoinSection = Main:NewSection("Rejoin Game")
