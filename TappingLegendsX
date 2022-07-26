@@ -1,6 +1,6 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("Tapper Sim Script", "GrapeTheme")
+local Window = Library.CreateLib("Tapper Simulator Script by Immortal", "Sentinel")
 
 local Main = Window:NewTab("Main")
 
@@ -539,7 +539,62 @@ RebirthSection:NewToggle("+200QN rebirth", "rebirth", function(rebirthauto)
         _G.howmuchreb = false
        end
 end)
-
+RebirthSection:NewToggle("+1SX rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 34       
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+5SX rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 35         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+20SX rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 36         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+100SX rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 37         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+500SX rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 38         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+1SP rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 39         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+5SP rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 40         
+       else
+        _G.howmuchreb = false
+       end
+end)
+RebirthSection:NewToggle("+20SP rebirth", "rebirth", function(rebirthauto)
+    if rebirthauto then
+        _G.howmuchreb = 41         
+       else
+        _G.howmuchreb = false
+       end
+end)
 RebirthSection:NewToggle("Turn On/Off", "Auto Extract Rebirths Vial", function(RebirthSection)
     if RebirthSection then
         _G.RebirthSection = true
@@ -676,11 +731,6 @@ AutoPresentSection:NewToggle("Auto Playtime Reward 9", "Auto Collect Plaztine re
         end
 end)
 
+local COMMING = Window:NewTab("COMMING SOON!")
 
-
-
-
-
-
-
-
+local COMMINGSection = COMMING:NewSection("More COMMING SOON!")
